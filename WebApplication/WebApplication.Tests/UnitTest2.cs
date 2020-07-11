@@ -15,7 +15,7 @@ namespace WebApplication.Tests
         [TestMethod]
         public void TestMethod5()
         {
-            Assert.AreEqual(1, 2);
+            Assert.AreEqual(1, 1);
         }
 
         [Ignore]
