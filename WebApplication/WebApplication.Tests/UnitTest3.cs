@@ -1,10 +1,11 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace WebApplication.Tests
+namespace WebApplication.MS.Tests
 {
     [Ignore]
     [TestClass]
+    [TestCategory("Unit Test 3")]
     public class UnitTest3
     {
         [TestMethod]

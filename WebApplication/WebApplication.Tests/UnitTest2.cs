@@ -1,9 +1,10 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace WebApplication.Tests
+namespace WebApplication.MS.Tests
 {
     [TestClass]
+    [TestCategory("Unit Test 2")]
     public class UnitTest2
     {
         [TestMethod]
