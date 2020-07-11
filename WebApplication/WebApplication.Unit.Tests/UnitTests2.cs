@@ -3,6 +3,7 @@ using Xunit;
 
 namespace WebApplication.Unit.Tests
 {
+    [Trait("Category", "Unit Test Cat 2")]
     public class UnitTests2
     {
         [Fact]
@@ -14,6 +15,7 @@ namespace WebApplication.Unit.Tests
         }
 
         [Fact]
+        [Trait("Category", "MyCategoryName")]
         public void ShoudBeEqual()
         {
             List<string> products = null;
