@@ -1,12 +1,13 @@
-﻿using System.Collections.Generic;
-using Xunit;
+﻿using NUnit.Framework;
+using System.Collections.Generic;
 
-namespace WebApplication.XUnit.Tests
+namespace WebApplication.NUnit.Tests
 {
-    [Trait("Category", "Unit Test Cat 2")]
+    [Category("Unit Test Cat 1.2")]
+    [TestFixture]
     public class UnitTests2
     {
-        [Fact]
+        [Test]
         public void ShoudBeNull()
         {
             List<string> products = null;
@@ -14,13 +15,13 @@ namespace WebApplication.XUnit.Tests
             Assert.Null(products);
         }
 
-        [Fact]
-        [Trait("Category", "MyCategoryName")]
+        [Test]
+        [Category("MyCategoryName")]
         public void ShoudBeEqual()
         {
             List<string> products = null;
             // making it failed
-            Assert.Equal(1, 1);
+            Assert.That(1 == 1);
         }
     }
 }
