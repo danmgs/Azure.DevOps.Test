@@ -9,15 +9,15 @@ Write-Host $unitTestFile.FullName
 Write-Host "1-*-*-*-*-*-*-*-*-*-*-*-*"
 
 Write-Host "2-*-*-*-*-*-*-*-*-*-*-*-*"
-Write-Host $coverlet $unitTestFile.FullName --target "dotnet" --targetargs "vstest $($unitTestFile.FullName) --logger:trx" --format "cobertura"  --exclude "[xunit.]"
+Write-Host $coverlet $unitTestFile.FullName --target "dotnet" --targetargs "vstest $($unitTestFile.FullName) --logger:trx" --format "cobertura"
 Write-Host "2-*-*-*-*-*-*-*-*-*-*-*-*"
 
 $coverlet = "$pwd\coverlet.exe"
 & $coverlet $unitTestFile.FullName --target "dotnet" --targetargs "vstest $($unitTestFile.FullName) --logger:trx" --format "cobertura"
 
 Write-Host "3-*-*-*-*-*-*-*-*-*-*-*-*"
-Write-Host "$pwd\reportgenerator.exe" "-reports:$($_.FullName)" "-targetdir:CoverageReport" "-reportstypes:HTMLInline;HTMLChart" 
+Write-Host "$pwd\reportgenerator.exe" "-reports:$($_.FullName)" "-targetdir:CoverageReport" "-reportstypes:HtmlInline_AzurePipelines;Cobertura" 
 Write-Host "3-*-*-*-*-*-*-*-*-*-*-*-*"
 
-%{ &"$pwd\reportgenerator.exe" "-reports:**/coverage.cobertura.xml" "-targetdir:CoverageReport" "-reportstypes:HTMLInline;HTMLChart" }
+%{ &"$pwd\reportgenerator.exe" "-reports:**/coverage.cobertura.xml" "-targetdir:CoverageReport" "-reportstypes:HtmlInline_AzurePipelines;Cobertura" }
 
