@@ -1,10 +1,12 @@
 using System;
+using System.Diagnostics.CodeAnalysis;
 using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
 namespace WebApplication.Areas.HelpPage.ModelDescriptions
 {
+    [ExcludeFromCodeCoverage]
     internal static class ModelNameHelper
     {
         // Modify this to provide custom model name mapping.
