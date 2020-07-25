@@ -15,6 +15,6 @@ Write-Host $unitTestFile
 Write-Host "-*-*-*-*-*-*-*-*-*-*-*-*"
 
 $coverlet = "$pwd\coverlet.exe"
-& $coverlet $unitTestFile --target "dotnet" --targetargs "vstest $($unitTestFile.FullName) --logger:trx" --format "cobertura"
+& $coverlet $unitTestFile.FullName --target "dotnet" --targetargs "vstest $($unitTestFile.FullName) --logger:trx" --format "cobertura"
 
 %{ &"$pwd\reportgenerator.exe" "-reports:**/coverage.cobertura.xml" "-targetdir:CoverageReport" "-reportstypes:HtmlInline_AzurePipelines;Cobertura" }
