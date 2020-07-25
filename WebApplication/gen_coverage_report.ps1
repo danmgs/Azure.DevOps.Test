@@ -1,23 +1,21 @@
-dotnet tool install dotnet-reportgenerator-globaltool --tool-path . --version 4.0.12
-dotnet tool install coverlet.console --tool-path . --version 1.4.1
+[CmdletBinding()]
+param (
+    $PathTestAssemblies
+)
+
+$thePathTestAssemblies = $PathTestAssemblies
+
+# no need to install when coverlet.exe + reportgenerator.exe are part of the sln folder.
+# dotnet tool install dotnet-reportgenerator-globaltool --tool-path . --version 4.0.12
+# dotnet tool install coverlet.console --tool-path . --version 1.4.1
 mkdir .\CoverageReport
-$unitTestFile = gci -Recurse | ?{ $_.FullName -like "*bin\Release\*NUnit.Tests.dll" }
+$unitTestFile = gci -Recurse | ?{ $_.FullName -like $($thePathTestAssemblies) }
 
-Write-Host "1-*-*-*-*-*-*-*-*-*-*-*-*"
+Write-Host "-*-*-*-*-*-*-*-*-*-*-*-*"
 Write-Host $unitTestFile
-Write-Host $unitTestFile.FullName
-Write-Host "1-*-*-*-*-*-*-*-*-*-*-*-*"
-
-Write-Host "2-*-*-*-*-*-*-*-*-*-*-*-*"
-Write-Host $coverlet $unitTestFile.FullName --target "dotnet" --targetargs "vstest $($unitTestFile.FullName) --logger:trx" --format "cobertura"
-Write-Host "2-*-*-*-*-*-*-*-*-*-*-*-*"
+Write-Host "-*-*-*-*-*-*-*-*-*-*-*-*"
 
 $coverlet = "$pwd\coverlet.exe"
-& $coverlet $unitTestFile.FullName --target "dotnet" --targetargs "vstest $($unitTestFile.FullName) --logger:trx" --format "cobertura"
-
-Write-Host "3-*-*-*-*-*-*-*-*-*-*-*-*"
-Write-Host "$pwd\reportgenerator.exe" "-reports:$($_.FullName)" "-targetdir:CoverageReport" "-reportstypes:HtmlInline_AzurePipelines;Cobertura" 
-Write-Host "3-*-*-*-*-*-*-*-*-*-*-*-*"
+& $coverlet $unitTestFile --target "dotnet" --targetargs "vstest $($unitTestFile.FullName) --logger:trx" --format "cobertura"
 
 %{ &"$pwd\reportgenerator.exe" "-reports:**/coverage.cobertura.xml" "-targetdir:CoverageReport" "-reportstypes:HtmlInline_AzurePipelines;Cobertura" }
-
