@@ -5,9 +5,8 @@ param (
 
 $thePathTestAssemblies = $PathTestAssemblies
 
-# no need to install when coverlet.exe + reportgenerator.exe are part of the sln folder.
-# dotnet tool install dotnet-reportgenerator-globaltool --tool-path . --version 4.0.12
-# dotnet tool install coverlet.console --tool-path . --version 1.4.1
+dotnet tool install dotnet-reportgenerator-globaltool --tool-path . --version 4.0.12
+dotnet tool install coverlet.console --tool-path . --version 1.4.1
 mkdir .\CoverageReport
 $unitTestFile = gci -Recurse | ?{ $_.FullName -like $($thePathTestAssemblies) }
 
