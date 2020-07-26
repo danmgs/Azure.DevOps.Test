@@ -1,14 +1,18 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using WebApplication.Model;
 
 namespace WebApplication.Query
 {
     public interface IHomeQuery
     {
-        Product Add(Product product);
+        List<Product> Get();
 
-        bool Execute(Product product, DateTime date);
+        List<Product> Add(Product product);
 
-        Product Update(Product product, DateTime date);
+        bool PrepareUpdate(Product product);
+
+        bool PostUpdate(Product product);
+
+        List<Product> Update(Product product);
     }
 }

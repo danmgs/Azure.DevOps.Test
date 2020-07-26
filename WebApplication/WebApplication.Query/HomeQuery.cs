@@ -1,33 +1,44 @@
 ﻿using System;
+using System.Collections.Generic;
 using WebApplication.Model;
 
 namespace WebApplication.Query
 {
     public class HomeQuery : IHomeQuery
     {
-        public Product Add(Product product)
+        readonly List<Product> _products = new List<Product>();
+
+        public List<Product> Get()
         {
+            return _products;
+        }
+
+        public List<Product> Add(Product product)
+        {
+            _products.Add(product);
             product.Status = "Added";
-            return product;
+            return _products;
         }
 
-        public bool Execute(Product product, DateTime date)
+        public bool PostUpdate(Product product)
         {
-            product.Status = "Executed";
-            return (product.Id % 2 == 0);
+            return true;
         }
 
-        public Product Update(Product product, DateTime date)
+        public bool PrepareUpdate(Product product)
         {
-            DateTime d = DateTime.Now;
-            bool res = this.Execute(product, d);
-            return new Product()
-            {
-                Id = product.Id,
-                Name = $"{product.Name}updated",
-                Qty = res ? (product.Qty * 2) : product.Qty,
-                Status = product.Status
-            };
+            product.Date = DateTime.Now;
+            return true;
+        }
+
+        public List<Product> Update(Product product)
+        {
+            var productToUpdate = _products.Find(p => p.Id == product.Id);
+
+            productToUpdate.Status = "Updated";
+            productToUpdate.Qty = product.Qty;
+
+            return _products;
         }
     }
 }

@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using WebApplication.Model;
 using WebApplication.Query;
 
@@ -13,14 +13,15 @@ namespace WebApplication.Service
             _homequery = homequery;
         }
 
-        public Product Add(Product product)
+        public List<Product> Add(Product product)
         {
             return _homequery.Add(product);
         }
 
-        public Product Update(Product product, DateTime date)
+        public List<Product> Update(Product product)
         {
-            return _homequery.Update(product, DateTime.Now);
+            _homequery.PrepareUpdate(product);
+            return _homequery.Update(product);
         }
     }
 }

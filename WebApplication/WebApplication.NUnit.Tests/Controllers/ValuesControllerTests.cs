@@ -1,7 +1,7 @@
 ﻿using NUnit.Framework;
 using WebApplication.Api.Controllers;
 
-namespace WebApplication.NUnit.TestsControllers
+namespace WebApplication.NUnit.TestsControllers.Controllers
 {
     [Ignore("Ignore")]
     [TestFixture]

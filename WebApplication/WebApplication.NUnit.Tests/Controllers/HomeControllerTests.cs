@@ -1,12 +1,13 @@
 ﻿using FluentAssertions;
 using Moq;
 using NUnit.Framework;
+using System.Collections.Generic;
 using System.Web.Mvc;
 using WebApplication.Api.Controllers;
 using WebApplication.Model;
 using WebApplication.Service;
 
-namespace WebApplication.NUnit.TestsControllers
+namespace WebApplication.NUnit.TestsControllers.Controllers
 {
     [TestFixture]
     [Category("Home Controller")]
@@ -22,8 +23,8 @@ namespace WebApplication.NUnit.TestsControllers
         {
             _homeServiceMock = new Mock<IHomeService>();
 
-            Product productMock = new Product() { Status = "Added" };
-            _homeServiceMock.Setup(h => h.Add(It.IsAny<Product>())).Returns(productMock);
+            List<Product> productListMock = new List<Product>() { new Product { Status = "Init" }, new Product { Status = "Init" }, };
+            _homeServiceMock.Setup(h => h.Add(It.IsAny<Product>())).Returns(productListMock);
         }
         #endregion
 
@@ -40,16 +41,14 @@ namespace WebApplication.NUnit.TestsControllers
             ViewResult viewResult = result as ViewResult;
             if (viewResult != null)
             {
-                //Assert.IsInstanceOf(typeof(Product), viewResult.ViewBag.Model);
-                //Assert.IsInstanceOf(typeof(string), viewResult.ViewBag.Title);
-                ((object)viewResult.ViewBag.Model).Should().BeOfType<Product>();
+                ((object)viewResult.ViewBag.Model).Should().BeOfType<List<Product>>();
                 ((object)viewResult.ViewBag.Title).Should().BeOfType<string>();
 
                 //Further Asserts for your model ViewBag.Model ..
-                Product p = viewResult.ViewBag.Model as Product;
-                
-                //Assert.AreEqual("Added", p.Status);
-                p.Status.Should().Equals("Added");
+                List<Product> products = viewResult.ViewBag.Model as List<Product>;
+
+                products.ForEach(p => p.Status.Should().Equals("Home"));
+                ((object)viewResult.ViewBag.Title).Should().Be("Home Page");
             }
 
             _homeServiceMock.Verify(h => h.Add(It.IsAny<Product>()), Times.Once);

@@ -1,12 +1,12 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using WebApplication.Model;
 
 namespace WebApplication.Service
 {
     public interface IHomeService
     {
-        Product Add(Product product);
+        List<Product> Add(Product product);
 
-        Product Update(Product product, DateTime date);
+        List<Product> Update(Product product);
     }
 }
