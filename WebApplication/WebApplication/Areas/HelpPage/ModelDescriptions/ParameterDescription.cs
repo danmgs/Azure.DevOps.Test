@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics.CodeAnalysis;
 
-namespace WebApplication.Areas.HelpPage.ModelDescriptions
+namespace WebApplication.Api.Areas.HelpPage.ModelDescriptions
 {
     [ExcludeFromCodeCoverage]
     public class ParameterDescription

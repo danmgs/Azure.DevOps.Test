@@ -1,7 +1,7 @@
 using System;
 using System.Diagnostics.CodeAnalysis;
 
-namespace WebApplication.Areas.HelpPage.ModelDescriptions
+namespace WebApplication.Api.Areas.HelpPage.ModelDescriptions
 {
     [ExcludeFromCodeCoverage]
     public class ParameterAnnotation

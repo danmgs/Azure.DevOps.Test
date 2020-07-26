@@ -4,7 +4,7 @@ using System.Globalization;
 using System.Linq;
 using System.Reflection;
 
-namespace WebApplication.Areas.HelpPage.ModelDescriptions
+namespace WebApplication.Api.Areas.HelpPage.ModelDescriptions
 {
     [ExcludeFromCodeCoverage]
     internal static class ModelNameHelper

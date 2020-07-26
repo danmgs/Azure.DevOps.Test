@@ -4,7 +4,7 @@ using System.Text;
 using System.Web;
 using System.Web.Http.Description;
 
-namespace WebApplication.Areas.HelpPage
+namespace WebApplication.Api.Areas.HelpPage
 {
     [ExcludeFromCodeCoverage]
     public static class ApiDescriptionExtensions

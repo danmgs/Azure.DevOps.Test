@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6CEDF86B-461D-4375-A4D5-88261FE3CE1A}</ProjectGuid>
+    <ProjectGuid>{4DE3BEA3-7740-400C-A41A-D72C947C194B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WebApplication.Unit.Tests</RootNamespace>
+    <RootNamespace>WebApplication.NUnit.Tests</RootNamespace>
     <AssemblyName>WebApplication.NUnit.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -41,11 +41,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ValuesControllerTests.cs" />
-    <Compile Include="HomeControllerTests.cs" />
-    <Compile Include="UnitTests2.cs" />
-    <Compile Include="UnitTests1.cs" />
+    <Compile Include="Controllers\ValuesControllerTests.cs" />
+    <Compile Include="Controllers\HomeControllerTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\HomeServiceTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="coverlet.collector">
@@ -57,6 +56,9 @@
       <Version>2.9.0</Version>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="FluentAssertions">
+      <Version>5.10.3</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.AspNet.Mvc">
       <Version>5.2.7</Version>
@@ -81,9 +83,21 @@
     </PackageReference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\WebApplication\WebApplication.csproj">
+    <ProjectReference Include="..\WebApplication.Model\WebApplication.Model.csproj">
+      <Project>{7FF43090-9CF1-4737-B871-94D4DAD47F7D}</Project>
+      <Name>WebApplication.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebApplication.Query\WebApplication.Query.csproj">
+      <Project>{A907FA4A-EADB-43AB-B289-322C17320B7C}</Project>
+      <Name>WebApplication.Query</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebApplication.Service\WebApplication.Service.csproj">
+      <Project>{1d734012-72ee-4afa-8853-71271909c5df}</Project>
+      <Name>WebApplication.Service</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\WebApplication\WebApplication.Api.csproj">
       <Project>{6a5edb2b-bff8-4016-879d-2c4a0738ebfe}</Project>
-      <Name>WebApplication</Name>
+      <Name>WebApplication.Api</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

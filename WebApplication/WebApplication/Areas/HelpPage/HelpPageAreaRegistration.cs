@@ -2,7 +2,7 @@ using System.Diagnostics.CodeAnalysis;
 using System.Web.Http;
 using System.Web.Mvc;
 
-namespace WebApplication.Areas.HelpPage
+namespace WebApplication.Api.Areas.HelpPage
 {
     [ExcludeFromCodeCoverage]
     public class HelpPageAreaRegistration : AreaRegistration

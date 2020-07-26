@@ -1,3 +1,10 @@
+######################################################################################
+# Calling example:
+# .\gen_coverage_report.ps1 -PathTestAssemblies "*\*bin\Debug\*Tests.dll"
+# .\gen_coverage_report.ps1 -PathTestAssemblies "*\*bin\Release\*Tests.dll"
+######################################################################################
+
+
 [CmdletBinding()]
 param (
     $PathTestAssemblies
@@ -11,7 +18,7 @@ mkdir .\CoverageReport
 $unitTestFile = gci -Recurse | ?{ $_.FullName -like $($thePathTestAssemblies) }
 
 Write-Host "-*-*-*-*-*-*-*-*-*-*-*-*"
-Write-Host $unitTestFile
+Write-Host $unitTestFile.FullName
 Write-Host "-*-*-*-*-*-*-*-*-*-*-*-*"
 
 $coverlet = "$pwd\coverlet.exe"

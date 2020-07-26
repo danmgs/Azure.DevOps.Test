@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Diagnostics.CodeAnalysis;
 using System.Net.Http.Headers;
 
-namespace WebApplication.Areas.HelpPage
+namespace WebApplication.Api.Areas.HelpPage
 {
     /// <summary>
     /// This is used to identify the place where the sample should be applied.
